@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_web/components.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LandingPageWeb extends StatefulWidget {
   const LandingPageWeb({super.key});
@@ -13,12 +12,58 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
+  urlLauncher(String imagePath, String url) {
+    return IconButton(
+      onPressed: () async {
+        await launchUrl(
+            Uri.parse(url));
+      },
+      icon: SvgPicture.asset(
+        imagePath,
+        color: Colors.black,
+        width: 35,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
     var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 72,
+              backgroundColor: Colors.tealAccent,
+              child: CircleAvatar(
+                radius: 70,
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage("assets/me.png"),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            SansBold(30, "Jushkinbek"),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              urlLauncher("assets/instagram.svg", "https://instagram.com/jushkinbek_rashidovich/"),
+              urlLauncher('assets/twitter.svg', "https://twitter.com/jushkinbekio"),
+              urlLauncher("assets/github.svg", "https://github.com/jushkinbekrashidovich"),
+              
+              ],
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black, size: 25.0),
