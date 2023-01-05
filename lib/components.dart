@@ -14,6 +14,37 @@ class TabsWeb extends StatefulWidget {
   State<TabsWeb> createState() => _TabsWebState();
 }
 
+
+class TabsMobile extends StatefulWidget {
+  final text;
+  final route;
+  const TabsMobile({super.key, @required this.text, @required this.route});
+
+  @override
+  State<TabsMobile> createState() => _TabsMobileState();
+}
+
+class _TabsMobileState extends State<TabsMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      elevation: 20.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0)
+      ),
+      color: Colors.black,
+      height: 50.0,
+      minWidth: 200.0,
+      child: Text(widget.text, style: GoogleFonts.openSans(
+        fontSize: 20.0,
+        color: Colors.white,
+
+      ),),
+      onPressed: (){
+
+    });
+  }
+}
 class _TabsWebState extends State<TabsWeb> {
   bool isSelected = false;
   @override
@@ -129,23 +160,27 @@ class TextForm extends StatelessWidget {
   }
 }
 
-class AnimatedCardWeb extends StatefulWidget {
+class AnimatedCard extends StatefulWidget {
   final imagePath;
   final text;
   final fit;
   final reverse;
-  const AnimatedCardWeb(
+  final height;
+  final width;
+  const AnimatedCard(
       {super.key,
       @required this.imagePath,
       @required this.text,
       this.reverse,
+      this.height,
+      this.width,
       this.fit});
 
   @override
-  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+  State<AnimatedCard> createState() => _AnimatedCardState();
 }
 
-class _AnimatedCardWebState extends State<AnimatedCardWeb>
+class _AnimatedCardState extends State<AnimatedCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller =
       AnimationController(vsync: this, duration: Duration(seconds: 4))..repeat(reverse: true);
@@ -172,8 +207,8 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
             children: [
               Image.asset(
                 widget.imagePath,
-                height: 200,
-                width: 200,
+                height: widget.height==null?200:widget.height,
+                width: widget.width==null?200:widget.width,
                 fit: widget.fit == null ? null : widget.fit,
               ),
               SizedBox(

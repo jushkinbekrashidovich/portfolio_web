@@ -58,7 +58,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
               urlLauncher("assets/instagram.svg", "https://instagram.com/jushkinbek_rashidovich/"),
               urlLauncher('assets/twitter.svg', "https://twitter.com/jushkinbekio"),
               urlLauncher("assets/github.svg", "https://github.com/jushkinbekrashidovich"),
-              
+
               ],
             ),
           ],
@@ -278,17 +278,17 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    AnimatedCardWeb(
+                    AnimatedCard(
                       imagePath: "assets/app.png",
                       text: 'App Development',
                       fit: BoxFit.contain,
                       reverse: true,
                     ),
-                    AnimatedCardWeb(
+                    AnimatedCard(
                       imagePath: "assets/webL.png",
                       text: 'Web Development',
                     ),
-                    AnimatedCardWeb(
+                    AnimatedCard(
                       imagePath: "assets/firebase.png",
                       text: 'Back-end Development',
                     ),
