@@ -233,7 +233,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
               SizedBox(
                 height: 35,
               ),
-               AnimatedCard(
+              AnimatedCard(
                 imagePath: "assets/app.png",
                 text: "App Development",
                 width: 300,
@@ -243,14 +243,60 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
               SizedBox(
                 height: 35,
               ),
-               AnimatedCard(
+              AnimatedCard(
                 imagePath: "assets/firebase.png",
                 text: "Back-End Development",
                 width: 300,
               ),
-              SizedBox(height: 60,)
+              SizedBox(
+                height: 60,
+              )
             ],
           ),
+
+          //contact fourth section
+          Wrap(
+            runSpacing: 20,
+            spacing: 20,
+            alignment: WrapAlignment.center,
+            children: [
+              SansBold(35, "Contact me"),
+              TextForm(
+                  text: "First Name",
+                  Containerwidth: widthDevice / 1.4,
+                  hintText: "Please type your first name"),
+              TextForm(
+                  text: "Last Name",
+                  Containerwidth: widthDevice / 1.4,
+                  hintText: "Please type your last name"),
+              TextForm(
+                  text: "Email",
+                  Containerwidth: widthDevice / 1.4,
+                  hintText: "Please type your email address"),
+              TextForm(
+                  text: "Phone Number",
+                  Containerwidth: widthDevice / 1.4,
+                  hintText: "Please type your phone number"),
+              TextForm(
+                text: "Message",
+                Containerwidth: widthDevice / 1.4,
+                hintText: "Message",
+                maxLine: 10,
+              ),
+              MaterialButton(
+                onPressed: () {},
+                elevation: 20,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                height: 60,
+                minWidth: widthDevice / 2.2,
+                color: Colors.tealAccent,
+                child: SansBold(20, "Submit"),
+              ),
+            ],
+          ),
+          SizedBox(height: 20,),
+          
         ],
       ),
     );

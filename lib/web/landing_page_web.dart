@@ -310,39 +310,39 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     Column(
                       children: [
                         TextForm(
-                          width: 350,
-                          heading: "First Name",
+                          Containerwidth: 350,
+                          text: "First Name",
                           hintText: "Please type your first name",
                         ),
                         SizedBox(
                           height: 15,
                         ),
                         TextForm(
-                            heading: "Email",
-                            width: 350,
+                            text: "Email",
+                            Containerwidth: 350,
                             hintText: "Please enter your email address"),
                       ],
                     ),
                     Column(
                       children: [
                         TextForm(
-                            heading: "Last name",
-                            width: 350,
+                            text: "Last name",
+                            Containerwidth: 350,
                             hintText: "Please Enter your last name"),
                         SizedBox(
                           height: 15,
                         ),
                         TextForm(
-                            heading: "Phone",
-                            width: 350,
+                            text: "Phone",
+                            Containerwidth: 350,
                             hintText: "Please enter your phone number")
                       ],
                     ),
                   ],
                 ),
                 TextForm(
-                  heading: "Message",
-                  width: widthDevice / 1.5,
+                  text: "Message",
+                  Containerwidth: widthDevice / 1.5,
                   hintText: "Please type your message",
                   maxLine: 10,
                 ),

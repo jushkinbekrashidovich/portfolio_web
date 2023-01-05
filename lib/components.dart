@@ -8,11 +8,58 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TabsWeb extends StatefulWidget {
   final title;
-  const TabsWeb(this.title, {super.key});
+  final route;
+
+  const TabsWeb( {super.key, this.title, this.route,});
 
   @override
   State<TabsWeb> createState() => _TabsWebState();
 }
+class _TabsWebState extends State<TabsWeb> {
+  bool isSelected = false;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).pushNamed(widget.route);
+      },
+      child: MouseRegion(
+        onEnter: (_) {
+          setState(() {
+            isSelected = true;
+          });
+        },
+        onExit: (_) {
+          setState(() {
+            isSelected = false;
+          });
+        },
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.elasticIn,
+          style: isSelected
+              ? GoogleFonts.openSans(
+                  fontSize: 25.0,
+                  color: Colors.black,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 0.5,
+                  decorationColor: Colors.black)
+              : GoogleFonts.oswald(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                ),
+          child: Text(
+            widget.title,
+            style: GoogleFonts.openSans(
+              color: Colors.black,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 
 class TabsMobile extends StatefulWidget {
@@ -41,47 +88,9 @@ class _TabsMobileState extends State<TabsMobile> {
 
       ),),
       onPressed: (){
+        Navigator.of(context).pushNamed(widget.route);
 
     });
-  }
-}
-class _TabsWebState extends State<TabsWeb> {
-  bool isSelected = false;
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) {
-        setState(() {
-          isSelected = true;
-        });
-      },
-      onExit: (_) {
-        setState(() {
-          isSelected = false;
-        });
-      },
-      child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.elasticIn,
-        style: isSelected
-            ? GoogleFonts.openSans(
-                fontSize: 25.0,
-                color: Colors.black,
-                decoration: TextDecoration.underline,
-                decorationThickness: 0.5,
-                decorationColor: Colors.black)
-            : GoogleFonts.oswald(
-                color: Colors.black,
-                fontSize: 20.0,
-              ),
-        child: Text(
-          widget.title,
-          style: GoogleFonts.openSans(
-            color: Colors.black,
-          ),
-        ),
-      ),
-    );
   }
 }
 
@@ -116,14 +125,14 @@ class Sans extends StatelessWidget {
 }
 
 class TextForm extends StatelessWidget {
-  final heading;
-  final width;
+  final text;
+  final Containerwidth;
   final hintText;
   final maxLine;
   const TextForm(
       {super.key,
-      @required this.heading,
-      @required this.width,
+      @required this.text,
+      @required this.Containerwidth,
       @required this.hintText,
       this.maxLine});
 
@@ -132,12 +141,12 @@ class TextForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Sans(16, heading),
+        Sans(16, text),
         SizedBox(
           height: 5,
         ),
         SizedBox(
-          width: width,
+          width: Containerwidth,
           child: TextFormField(
             maxLines: maxLine == null ? null : maxLine,
             decoration: InputDecoration(
