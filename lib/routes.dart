@@ -1,7 +1,9 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio_web/mobile/contact_mobile.dart';
 import 'package:portfolio_web/mobile/landing_page_mobile.dart';
+import 'package:portfolio_web/web/contact_web.dart';
 import 'package:portfolio_web/web/landing_page_web.dart';
 
 class Routes {
@@ -16,6 +18,16 @@ class Routes {
               return LandingPageMobile();
           }),
         );
+        case '/contact':
+        return MaterialPageRoute(
+          builder: (_) => LayoutBuilder(builder: (context, constraints) {
+            if (constraints.maxWidth > 800) {
+              return ContactWeb();
+            } else
+              return ContactMobile();
+          }),
+          settings: settings
+        );
         default: 
         return MaterialPageRoute(
           builder: (_) => LayoutBuilder(builder: (context, constraints) {
@@ -25,6 +37,7 @@ class Routes {
               return LandingPageMobile();
           }),
         );
+        
     }
   }
 }
