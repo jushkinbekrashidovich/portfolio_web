@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "95401261661",
+    "project_id": "jushkinbek-214b1",
+    "storage_bucket": "jushkinbek-214b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95401261661:android:3f96f4881ebeb6534eabb4",
+        "android_client_info": {
+          "package_name": "com.example.portfolio_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95401261661-ovjqfp0ctg3l4dubnlcqbh57pon3bfij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4HRmIu1-Aace7sjxqqfEoouxMrmoQVIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95401261661-ovjqfp0ctg3l4dubnlcqbh57pon3bfij.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "95401261661-8jt6uofpqrufdcact8asm6flrag7fh4g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.portfolioWeb"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

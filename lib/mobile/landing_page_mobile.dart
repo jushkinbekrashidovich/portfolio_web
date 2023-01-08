@@ -31,275 +31,277 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        iconTheme: IconThemeData(size: 35.0, color: Colors.black),
-      ),
-      endDrawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DrawerHeader(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(width: 2.0, color: Colors.black),
-                  ),
-                  child: Image.asset("assets/me.png"),
-                )),
-            TabsMobile(text: "Home", route: '/'),
-            SizedBox(
-              height: 20.0,
-            ),
-            TabsMobile(text: "Works", route: '/works'),
-            SizedBox(
-              height: 20.0,
-            ),
-            TabsMobile(text: "Blog", route: '/blog'),
-            SizedBox(
-              height: 20.0,
-            ),
-            TabsMobile(text: "About", route: '/about'),
-            SizedBox(
-              height: 20.0,
-            ),
-            TabsMobile(text: "Contact", route: '/contact'),
-            SizedBox(
-              height: 40.0,
-            ),
-            //TabsMobile(text: "Works", route: '/works'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: () async {
-                    await launchUrl(Uri.parse(
-                        "https://instagram.com/jushkinbek_rashidovich"));
-                  },
-                  icon: SvgPicture.asset(
-                    "assets/instagram.svg",
-                    color: Colors.black,
-                    width: 35.0,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    await launchUrl(
-                        Uri.parse("https://twitter.com/jushkinbekio"));
-                  },
-                  icon: SvgPicture.asset(
-                    "assets/twitter.svg",
-                    color: Colors.black,
-                    width: 35.0,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    await launchUrl(
-                        Uri.parse("https://github.com/jushkinbekrashidovich"));
-                  },
-                  icon: SvgPicture.asset(
-                    "assets/github.svg",
-                    color: Colors.black,
-                    width: 35.0,
-                  ),
-                ),
-              ],
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          iconTheme: IconThemeData(size: 35.0, color: Colors.black),
         ),
-      ),
-      body: ListView(
-        children: [
-          //first section
-          CircleAvatar(
-                  radius: 117.0,
-                  backgroundColor: Colors.tealAccent,
-                  child: CircleAvatar(
-                    radius: 110,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage("assets/me.png"),
+        endDrawer: Drawer(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DrawerHeader(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(width: 2.0, color: Colors.black),
+                    ),
+                    child: Image.asset("assets/me.png"),
+                  )),
+              TabsMobile(text: "Home", route: '/'),
+              SizedBox(
+                height: 20.0,
+              ),
+              TabsMobile(text: "Works", route: '/works'),
+              SizedBox(
+                height: 20.0,
+              ),
+              TabsMobile(text: "Blog", route: '/blog'),
+              SizedBox(
+                height: 20.0,
+              ),
+              TabsMobile(text: "About", route: '/about'),
+              SizedBox(
+                height: 20.0,
+              ),
+              TabsMobile(text: "Contact", route: '/contact'),
+              SizedBox(
+                height: 40.0,
+              ),
+              //TabsMobile(text: "Works", route: '/works'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      await launchUrl(Uri.parse(
+                          "https://instagram.com/jushkinbek_rashidovich"));
+                    },
+                    icon: SvgPicture.asset(
+                      "assets/instagram.svg",
+                      color: Colors.black,
+                      width: 35.0,
+                    ),
                   ),
-                ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
+                  IconButton(
+                    onPressed: () async {
+                      await launchUrl(
+                          Uri.parse("https://twitter.com/jushkinbekio"));
+                    },
+                    icon: SvgPicture.asset(
+                      "assets/twitter.svg",
+                      color: Colors.black,
+                      width: 35.0,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      await launchUrl(
+                          Uri.parse("https://github.com/jushkinbekrashidovich"));
+                    },
+                    icon: SvgPicture.asset(
+                      "assets/github.svg",
+                      color: Colors.black,
+                      width: 35.0,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        body: ListView(
+          children: [
+            //first section
+            CircleAvatar(
+                    radius: 117.0,
+                    backgroundColor: Colors.tealAccent,
+                    child: CircleAvatar(
+                      radius: 110,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage("assets/me.png"),
+                    ),
+                  ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.tealAccent,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        child: SansBold(15, "Hello I'm "),
+                      ),
+                      SansBold(40, "Jushkinbek"),
+                      SansBold(20, "Flutter Developer")
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Wrap(
+                        direction: Axis.vertical,
+                        spacing: 3.0,
+                        children: [
+                          Icon(CupertinoIcons.mail),
+                          Icon(CupertinoIcons.phone),
+                          Icon(CupertinoIcons.location_solid),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Wrap(
+                        direction: Axis.vertical,
+                        spacing: 9.0,
+                        children: [
+                          Sans(15, "jushqinbekbekniyozov@gmail.com"),
+                          Sans(15, "+99888 018 99 77"),
+                          Sans(15, "Tashkent, Uzbekistan"),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 90,
+            ),
+            //second section
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SansBold(35, "About me"),
+                  Sans(15,
+                      "Hello, I'm Jushkinbek, I specialize in Flutter Development"),
+                  Sans(15,
+                      "I've strive to ensure astounding performance with state of "),
+                  Sans(15,
+                      "the art security for Android, IOS, Web, Mac, Linux, Windows"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Wrap(
+                    spacing: 7,
+                    runSpacing: 7,
+                    children: [
+                      tealContainer("Flutter"),
+                      tealContainer("Firebase"),
+                      tealContainer("Android"),
+                      tealContainer("Windows"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                
-                SizedBox(
-                  height: 25,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.tealAccent,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      child: SansBold(15, "Hello I'm "),
-                    ),
-                    SansBold(40, "Jushkinbek"),
-                    SansBold(20, "Flutter Developer")
-                  ],
+                SansBold(35, "What I do?"),
+                AnimatedCard(
+                  imagePath: "assets/webL.png",
+                  text: "Web Development",
+                  width: 300,
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 35,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Wrap(
-                      direction: Axis.vertical,
-                      spacing: 3.0,
-                      children: [
-                        Icon(CupertinoIcons.mail),
-                        Icon(CupertinoIcons.phone),
-                        Icon(CupertinoIcons.location_solid),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Wrap(
-                      direction: Axis.vertical,
-                      spacing: 9.0,
-                      children: [
-                        Sans(15, "jushqinbekbekniyozov@gmail.com"),
-                        Sans(15, "+99888 018 99 77"),
-                        Sans(15, "Tashkent, Uzbekistan"),
-                      ],
-                    ),
-                  ],
+                AnimatedCard(
+                  imagePath: "assets/app.png",
+                  text: "App Development",
+                  width: 300,
+                  fit: BoxFit.contain,
+                  reverse: true,
                 ),
+                SizedBox(
+                  height: 35,
+                ),
+                AnimatedCard(
+                  imagePath: "assets/firebase.png",
+                  text: "Back-End Development",
+                  width: 300,
+                ),
+                SizedBox(
+                  height: 60,
+                )
               ],
             ),
-          ),
-          SizedBox(
-            height: 90,
-          ),
-          //second section
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+    
+            //contact fourth section
+            Wrap(
+              runSpacing: 20,
+              spacing: 20,
+              alignment: WrapAlignment.center,
               children: [
-                SansBold(35, "About me"),
-                Sans(15,
-                    "Hello, I'm Jushkinbek, I specialize in Flutter Development"),
-                Sans(15,
-                    "I've strive to ensure astounding performance with state of "),
-                Sans(15,
-                    "the art security for Android, IOS, Web, Mac, Linux, Windows"),
-                SizedBox(
-                  height: 10,
+                SansBold(35, "Contact me"),
+                TextForm(
+                    text: "First Name",
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Please type your first name"),
+                TextForm(
+                    text: "Last Name",
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Please type your last name"),
+                TextForm(
+                    text: "Email",
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Please type your email address"),
+                TextForm(
+                    text: "Phone Number",
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Please type your phone number"),
+                TextForm(
+                  text: "Message",
+                  Containerwidth: widthDevice / 1.4,
+                  hintText: "Message",
+                  maxLine: 10,
                 ),
-                Wrap(
-                  spacing: 7,
-                  runSpacing: 7,
-                  children: [
-                    tealContainer("Flutter"),
-                    tealContainer("Firebase"),
-                    tealContainer("Android"),
-                    tealContainer("Windows"),
-                  ],
+                MaterialButton(
+                  onPressed: () {},
+                  elevation: 20,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 60,
+                  minWidth: widthDevice / 2.2,
+                  color: Colors.tealAccent,
+                  child: SansBold(20, "Submit"),
                 ),
               ],
             ),
-          ),
-          SizedBox(
-            height: 60,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SansBold(35, "What I do?"),
-              AnimatedCard(
-                imagePath: "assets/webL.png",
-                text: "Web Development",
-                width: 300,
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              AnimatedCard(
-                imagePath: "assets/app.png",
-                text: "App Development",
-                width: 300,
-                fit: BoxFit.contain,
-                reverse: true,
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              AnimatedCard(
-                imagePath: "assets/firebase.png",
-                text: "Back-End Development",
-                width: 300,
-              ),
-              SizedBox(
-                height: 60,
-              )
-            ],
-          ),
-
-          //contact fourth section
-          Wrap(
-            runSpacing: 20,
-            spacing: 20,
-            alignment: WrapAlignment.center,
-            children: [
-              SansBold(35, "Contact me"),
-              TextForm(
-                  text: "First Name",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your first name"),
-              TextForm(
-                  text: "Last Name",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your last name"),
-              TextForm(
-                  text: "Email",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your email address"),
-              TextForm(
-                  text: "Phone Number",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your phone number"),
-              TextForm(
-                text: "Message",
-                Containerwidth: widthDevice / 1.4,
-                hintText: "Message",
-                maxLine: 10,
-              ),
-              MaterialButton(
-                onPressed: () {},
-                elevation: 20,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                height: 60,
-                minWidth: widthDevice / 2.2,
-                color: Colors.tealAccent,
-                child: SansBold(20, "Submit"),
-              ),
-            ],
-          ),
-          SizedBox(height: 20,),
-          
-        ],
+            SizedBox(height: 20,),
+            
+          ],
+        ),
       ),
     );
   }

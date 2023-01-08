@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -131,21 +132,34 @@ class _BlogWebState extends State<BlogWeb> {
             ),
           ];
         },
-        body: ListView(
-          children: [
-            BlogPost(),
-            BlogPost(),
-            BlogPost(),
-            BlogPost(),
-          ],
-        ),
+        body: StreamBuilder<QuerySnapshot>(
+            stream:
+                FirebaseFirestore.instance.collection("articles").snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (BuildContext context, index) {
+                      DocumentSnapshot documentSnapshot =
+                          snapshot.data!.docs[index];
+                      return BlogPost(
+                          title: documentSnapshot["title"],
+                          body: documentSnapshot["body"]);
+                    });
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }),
       ),
     ));
   }
 }
 
 class BlogPost extends StatefulWidget {
-  const BlogPost({super.key});
+  final title;
+  final body;
+
+  const BlogPost({super.key, @required this.title, @required this.body});
 
   @override
   State<BlogPost> createState() => _BlogPostState();
@@ -176,7 +190,7 @@ class _BlogPostState extends State<BlogPost> {
                     borderRadius: BorderRadius.circular(3),
                   ),
                   child: AbelCustom(
-                    text: "Who is Dash?",
+                    text: widget.title.toString(),
                     color: Colors.white,
                     size: 25,
                   ),
@@ -197,7 +211,7 @@ class _BlogPostState extends State<BlogPost> {
               height: 7,
             ),
             Text(
-              "ahajajk jak ha oa aka la aka aka ak aka aka ka aka aka ka ak aka aka aka ak aa aj ajana ja aj hajajk jak ha oa aka la aka aka ak aka aka ka aka aka ka ak aka aka aka ak aa aj ajana ja a",
+              widget.body.toString(),
               style: GoogleFonts.openSans(fontSize: 15),
               maxLines: expand == true ? null : 3,
               overflow:
