@@ -142,8 +142,8 @@ class _AboutWebState extends State<AboutWeb> {
                     ),
 
               ],
-            )
-           ,CircleAvatar(
+            ),
+           CircleAvatar(
               radius: 147,
               backgroundColor: Colors.tealAccent,
               child: CircleAvatar(
@@ -216,7 +216,7 @@ class _AboutWebState extends State<AboutWeb> {
               children: [
                 SansBold(30, "Back-End Development"),
                 SizedBox(height: 15,),
-                SansBold(15, "Do you want your back-end to be highly scalable and secure? Let's have a conversation on how I can help you with that"),
+                Sans(15, "Do you want your back-end to be highly scalable and secure? Let's have a conversation on how I can help you with that"),
                 
               ],
             ),
