@@ -117,12 +117,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
       body: ListView(
         children: [
           //first section
-          Padding(
-            padding: EdgeInsets.only(left: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(
+          CircleAvatar(
                   radius: 117.0,
                   backgroundColor: Colors.tealAccent,
                   child: CircleAvatar(
@@ -131,11 +126,17 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                     backgroundImage: AssetImage("assets/me.png"),
                   ),
                 ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                
                 SizedBox(
                   height: 25,
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       decoration: BoxDecoration(
@@ -191,9 +192,10 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
           ),
           //second section
           Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SansBold(35, "About me"),
                 Sans(15,

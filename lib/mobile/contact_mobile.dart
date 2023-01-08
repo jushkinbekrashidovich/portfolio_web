@@ -141,6 +141,7 @@ class _ContactMobileState extends State<ContactMobile> {
                   text: "Phone Number",
                   Containerwidth: widthDevice / 1.4,
                   hintText: "Please type your phone number"),
+                  
               TextForm(
                 text: "Message",
                 Containerwidth: widthDevice / 1.4,
