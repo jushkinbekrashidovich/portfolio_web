@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../components.dart';
@@ -14,6 +15,16 @@ class ContactMobile extends StatefulWidget {
 }
 
 class _ContactMobileState extends State<ContactMobile> {
+
+  var logger = Logger();
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -119,47 +130,80 @@ class _ContactMobileState extends State<ContactMobile> {
       } ,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 25, ),
-        child: Wrap(
-            runSpacing: 20,
-            spacing: 20,
-            alignment: WrapAlignment.center,
-            children: [
-              SansBold(35, "Contact me"),
-              TextForm(
-                  text: "First Name",
+        child: Form(
+          key: formKey,
+          child: Wrap(
+              runSpacing: 20,
+              spacing: 20,
+              alignment: WrapAlignment.center,
+              children: [
+                SansBold(35, "Contact me"),
+                TextForm(
+                    text: "First Name",
+                    controller: _firstnameController,
+                    Containerwidth: widthDevice / 1.4,
+                    validator: (text){
+                      if(text.toString().isEmpty){
+                        return  "First name is required";
+                      }
+                    },
+                    hintText: "Please type your first name"),
+                TextForm(
+                    text: "Last Name",
+                    controller: _lastNameController,
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Please type your last name"),
+                TextForm(
+                    text: "Email",
+                    controller: _emailController,
+                    Containerwidth: widthDevice / 1.4,
+                    validator: (text){
+                      if(text.toString().isEmpty){
+                        return  "Email is required";
+                      }
+                    },
+                    hintText: "Please type your email address"),
+                TextForm(
+                    text: "Phone Number",
+                    controller: _phoneController,
+                    Containerwidth: widthDevice / 1.4,
+                    hintText: "Please type your phone number"),
+                    
+                TextForm(
+                  text: "Message",
+                  controller: _messageController,
                   Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your first name"),
-              TextForm(
-                  text: "Last Name",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your last name"),
-              TextForm(
-                  text: "Email",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your email address"),
-              TextForm(
-                  text: "Phone Number",
-                  Containerwidth: widthDevice / 1.4,
-                  hintText: "Please type your phone number"),
-                  
-              TextForm(
-                text: "Message",
-                Containerwidth: widthDevice / 1.4,
-                hintText: "Message",
-                maxLine: 10,
-              ),
-              MaterialButton(
-                onPressed: () {},
-                elevation: 20,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                height: 60,
-                minWidth: widthDevice / 2.2,
-                color: Colors.tealAccent,
-                child: SansBold(20, "Submit"),
-              ),
-            ],
-          ),
+                  hintText: "Message",
+                  validator: (text){
+                      if(text.toString().isEmpty){
+                        return  "Message is required";
+                      }
+                    },
+                  maxLine: 10,
+                ),
+                MaterialButton(
+                  onPressed: () async{
+            
+                        final addData = new AddDataFirestore();
+                        logger.d(_firstnameController.text);
+                        if(formKey.currentState!.validate()){
+                          await addData.addResponse(_firstnameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text);
+                         formKey.currentState!.reset();
+                        DialogError(context);
+                        
+                        };
+                      },
+                  elevation: 20,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 60,
+                  minWidth: widthDevice / 2.2,
+                  color: Colors.tealAccent,
+                  child: SansBold(20, "Submit"),
+                ),
+              ],
+            ),
+        ),
 
       ),
       ),

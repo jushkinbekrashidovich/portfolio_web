@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:portfolio_web/components.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,8 +16,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
   urlLauncher(String imagePath, String url) {
     return IconButton(
       onPressed: () async {
-        await launchUrl(
-            Uri.parse(url));
+        await launchUrl(Uri.parse(url));
       },
       icon: SvgPicture.asset(
         imagePath,
@@ -25,6 +25,14 @@ class _LandingPageWebState extends State<LandingPageWeb> {
       ),
     );
   }
+
+  var logger = Logger();
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +63,12 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-              urlLauncher("assets/instagram.svg", "https://instagram.com/jushkinbek_rashidovich/"),
-              urlLauncher('assets/twitter.svg', "https://twitter.com/jushkinbekio"),
-              urlLauncher("assets/github.svg", "https://github.com/jushkinbekrashidovich"),
-
+                urlLauncher("assets/instagram.svg",
+                    "https://instagram.com/jushkinbek_rashidovich/"),
+                urlLauncher(
+                    'assets/twitter.svg', "https://twitter.com/jushkinbekio"),
+                urlLauncher("assets/github.svg",
+                    "https://github.com/jushkinbekrashidovich"),
               ],
             ),
           ],
@@ -74,15 +84,30 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             Spacer(
               flex: 3,
             ),
-            TabsWeb(title: "Home", route: '/',),
+            TabsWeb(
+              title: "Home",
+              route: '/',
+            ),
             Spacer(),
-            TabsWeb( title: "Works", route: '/works',),
+            TabsWeb(
+              title: "Works",
+              route: '/works',
+            ),
             Spacer(),
-            TabsWeb(title:"Blog", route: '/blog',),
+            TabsWeb(
+              title: "Blog",
+              route: '/blog',
+            ),
             Spacer(),
-            TabsWeb(title: "About", route: '/about',),
+            TabsWeb(
+              title: "About",
+              route: '/about',
+            ),
             Spacer(),
-            TabsWeb(title:"Contact", route: '/contact',),
+            TabsWeb(
+              title: "Contact",
+              route: '/contact',
+            ),
             Spacer(),
           ],
         ),
@@ -106,7 +131,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                               topLeft: Radius.circular(20.0),
                               topRight: Radius.circular(20.0),
                               bottomRight: Radius.circular(20),
-                            )), 
+                            )),
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         child: SansBold(15, "Hello, I'm")),
@@ -300,63 +325,109 @@ class _LandingPageWebState extends State<LandingPageWeb> {
           //fourth section
           Container(
             height: heightDevice,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SansBold(40, "Contact Me"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        TextForm(
-                          Containerwidth: 350,
-                          text: "First Name",
-                          hintText: "Please type your first name",
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        TextForm(
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SansBold(40, "Contact Me"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          TextForm(
+                            Containerwidth: 350,
+                            text: "First Name",
+                            hintText: "Please type your first name",
+                            controller: _firstnameController,
+                            validator: (text) {
+                              if (text.toString().isEmpty) {
+                                return "First name is required";
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          TextForm(
                             text: "Email",
                             Containerwidth: 350,
-                            hintText: "Please enter your email address"),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        TextForm(
+                            hintText: "Please enter your email address",
+                            controller: _emailController,
+                            validator: (text) {
+                              if (text.toString().isEmpty) {
+                                return "Email is required";
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          TextForm(
                             text: "Last name",
                             Containerwidth: 350,
-                            hintText: "Please Enter your last name"),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        TextForm(
+                            hintText: "Please Enter your last name",
+                            controller: _lastNameController,
+                            // validator: (text) {
+                            //   if (text.toString().isEmpty) {
+                            //     return "Last name is required";
+                            //   }
+                            // },
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          TextForm(
                             text: "Phone",
                             Containerwidth: 350,
-                            hintText: "Please enter your phone number")
-                      ],
-                    ),
-                  ],
-                ),
-                TextForm(
-                  text: "Message",
-                  Containerwidth: widthDevice / 1.5,
-                  hintText: "Please type your message",
-                  maxLine: 10,
-                ),
-                MaterialButton(
-                  elevation: 20.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  height: 60.0,
-                  minWidth: 200.0,
-                  color: Colors.tealAccent,
-                  child: SansBold(20.0, "Submit"),
-                  onPressed: () {},
-                ),
-              ],
+                            hintText: "Please enter your phone number",
+                            controller: _phoneController,
+                            // validator: (text) {
+                            //   if (text.toString().isEmpty) {
+                            //     return "Phone number is required";
+                            //   }
+                            // },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  TextForm(
+                    text: "Message",
+                    Containerwidth: widthDevice / 1.5,
+                    hintText: "Please type your message",
+                    controller: _messageController,
+                    validator: (text) {
+                      if (text.toString().isEmpty) {
+                        return "Message is required";
+                      }
+                    },
+                    maxLine: 10,
+                  ),
+                  MaterialButton(
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    height: 60.0,
+                    minWidth: 200.0,
+                    color: Colors.tealAccent,
+                    child: SansBold(20.0, "Submit"),
+                    onPressed: () async{
+
+                      final addData = new AddDataFirestore();
+                      logger.d(_firstnameController.text);
+                      if(formKey.currentState!.validate()){
+                        await addData.addResponse(_firstnameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text);
+                       formKey.currentState!.reset();
+                      DialogError(context);
+                      
+                      };
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:logger/logger.dart';
 import 'package:portfolio_web/components.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,6 +12,13 @@ class ContactWeb extends StatefulWidget {
 }
 
 class _ContactWebState extends State<ContactWeb> {
+  var logger = Logger();
+  final TextEditingController _firstnameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -128,26 +136,41 @@ class _ContactWebState extends State<ContactWeb> {
         },
         body: SingleChildScrollView(
           child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 30),
               SansBold(40, "Contact me"),
               SizedBox(height: 20),
-              Row(
+              Form(
+                key: formKey,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
                         TextForm(
+                          controller: _firstnameController,
                           Containerwidth: 350,
                           text: "First Name",
+                          validator: (text) {
+                              if (text.toString().isEmpty) {
+                                return "First name is required";
+                              }
+                            },
                           hintText: "Please type your first name",
                         ),
+
                         SizedBox(
                           height: 15,
                         ),
                         TextForm(
+                            controller: _emailController,
+                            validator: (text) {
+                              if (text.toString().isEmpty) {
+                                return "Email is required";
+                              }
+                            },
                             text: "Email",
                             Containerwidth: 350,
                             hintText: "Please enter your email address"),
@@ -156,42 +179,72 @@ class _ContactWebState extends State<ContactWeb> {
                     Column(
                       children: [
                         TextForm(
+                            controller: _lastNameController,
                             text: "Last name",
+                            
                             Containerwidth: 350,
                             hintText: "Please Enter your last name"),
                         SizedBox(
                           height: 15,
                         ),
                         TextForm(
+                            controller: _phoneController,
+                            
                             text: "Phone",
                             Containerwidth: 350,
                             hintText: "Please enter your phone number")
                       ],
                     ),
-                 
-                 
                   ],
                 ),
-                SizedBox(height: 10,),
-                TextForm(
-                  text: "Message",
-                  Containerwidth: widthDevice / 1.5,
-                  hintText: "Please type your message",
-                  maxLine: 10,
-                ),
-                 SizedBox(height: 20,), 
-                MaterialButton(
-                  elevation: 20.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  height: 60.0,
-                  minWidth: 200.0,
-                  color: Colors.tealAccent,
-                  child: SansBold(20.0, "Submit"),
-                  onPressed: () {},
-                ),
-                SizedBox(height: 20,),
-
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              TextForm(
+                text: "Message",
+                
+                controller: _messageController,
+                validator: (text) {
+                              if (text.toString().isEmpty) {
+                                return "Message is required";
+                              }
+                            },
+                Containerwidth: widthDevice / 1.5,
+                hintText: "Please type your message",
+                
+                maxLine: 10,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              MaterialButton(
+                elevation: 20.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                height: 60.0,
+                minWidth: 200.0,
+                color: Colors.tealAccent,
+                child: SansBold(20.0, "Submit"),
+                onPressed: () async {
+                  final addData = new AddDataFirestore();
+                  logger.d(_firstnameController.text);
+                  if (formKey.currentState!.validate()) {
+                    await addData.addResponse(
+                        _firstnameController.text,
+                        _lastNameController.text,
+                        _emailController.text,
+                        _phoneController.text,
+                        _messageController.text);
+                    formKey.currentState!.reset();
+                    DialogError(context);
+                  }
+                  ;
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
